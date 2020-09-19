@@ -4,7 +4,7 @@ import requests
 
 @app.route("/")
 def index():
-    return '<h2>Home Page</h2>'
+    return render_template("index.html")
 
 @app.route("/profile")
 def profile():

@@ -23,8 +23,8 @@ function notifyMe() {
           icon: 'https://icons-for-free.com/download-icon-clock+minute+time+timer+watch+icon-1320086045717163975_512.png',
           body: 'Time is Up!',
         });
-      }
-  }
+    }
+}
 
 function countup() {
     console.log("Hello from app.js!");
