@@ -11,11 +11,11 @@
 	<form>
 		<label for="minutes">Time in seconds:</label>
     <input type="number" id="seconds" name="seconds" min="1" max="30">
-		<!-- <input type="submit" value="Submit" accesskey="enter"> -->
-    <!-- <script>document.getElementById("seconds") = </script> -->
+		<input type="submit" value="Submit" accesskey="enter">
+    <script>document.getElementById("seconds") = </script>
 	</form>
 
-  <h5 class="info">Click to start!</h5>
+  <h5 class="info">Click to start <script>document.getElementById("seconds").value</script> seconds!</h5>
   <p class="info" id="info-msg">You will get notified after the time ends!</p>
 
   <button onclick="countdown(document.getElementById('seconds').value)">Start</button>
