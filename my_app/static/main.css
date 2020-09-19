@@ -1,0 +1,26 @@
+body {
+    text-align: center;
+}
+
+#title {
+    background-color: lightblue;
+}
+
+.facts {
+    color: red;
+    font-size: 2em;
+}
+
+#color{
+    color: navy;
+}
+
+button {
+    width: 500px;
+    height: 300px;
+}
+
+#post1 {
+    width: 60%;
+    margin: auto;
+}

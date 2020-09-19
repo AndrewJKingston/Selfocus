@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.1.4/lib/p5.min.js"></script> 
+  <script language="javascript" src="https://cdn.jsdelivr.net/npm/p5@1.1.4/lib/addons/p5.sound.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../static/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+  
+  <title>Selfocus</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+  <h1 id="title">Timer</h1>
+  <img src="https://icons-for-free.com/download-icon-clock+minute+time+timer+watch+icon-1320086045717163975_512.png">
+  
+  <h5 class="info">Click to start {{time}} sec!</h5>
+  <p class="info">You will get notified after the time ends!</p>
+
+  <button onclick="countdown({{ time }})">Start</button>
+  <p id="time">____</p>
+
+  <!-- <script language="javascript" type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script> -->
+</body>
+</html>
