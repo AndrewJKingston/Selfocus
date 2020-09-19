@@ -39,35 +39,26 @@ function countup() {
 
 function countdown(time) {
     console.log("app.js");
-    var n = new Notification("HI!");
+    if (document.getElementById("time").innerHTML == 0 || document.getElementById("time").innerHTML === "____") {
+        document.getElementById("info-msg").innerHTML = "You will get notified after the time ends!";
+        document.getElementById("info-msg").style = "color:black;";
 
-    // if (!"Notification" in window) {
-    //     alert("This browser does not support desktop notification");
-    // }
-    // else if (Notification.permission === "denied") {
-    //     alert("This browser has notification blocked");
-    // }
-    // else if (Notification.permission !== 'denied') {
-    //     Notification.requestPermission(function (permission) {
-    //         if(!('permission' in Notification)) {
-    //             Notification.permission = permission;
-    //         }
-    //         if (permission === "denied") {
-    //             alert("This browser has notification blocked");
-    //         }
-    //     });
-    // }
+        document.getElementById("time").innerHTML = time;
 
-    document.getElementById("time").innerHTML = time;
-
-    interv = setInterval(timeIt,1000)
-    function timeIt() {
-        if (document.getElementById("time").innerHTML > 0) {
-            document.getElementById("time").innerHTML--;
+        interv = setInterval(timeIt,1000)
+        function timeIt() {
+            if (document.getElementById("time").innerHTML > 0) {
+                document.getElementById("time").innerHTML--;
+            }
+            else {
+                notifyMe();
+                clearInterval(interv)
+            }
         }
-        else {
-            notifyMe();
-            clearInterval(interv)
-        }
+    } 
+    else {
+        alert("You cannot start a new timer until this one ends!");
+        document.getElementById("info-msg").innerHTML = "You cannot start a new timer until this one ends!";
+        document.getElementById("info-msg").style = "color:red;";
     }
 }
