@@ -36,4 +36,80 @@
       {% endfor %}
     {% endfor %}
   </div>
+  <h3 id="newProfileHeader">Or create your own study profile!</h3>
+  <div class="newStudyMethod ui segment">
+      <form id="first" class="studyMethodForm ui segment">
+          <label for="newMethodName">Name of new profile: </label>
+          <input type="text" id="newMethodName" name="newMethodName">
+          <br>
+          <h4>First Work Interval: </h4>
+          <label for="firstWorkMinutes">Minutes: </label>
+          <input type="number" id="firstWorkMinutes" name="firstWorkMinutes">
+          <label for="firstWorkSeconds">Seconds: </label>
+          <input type="number" id="firstWorkSeconds" name="firstWorkSeconds">
+          <br>
+          <h4>First Break Interval:</h4>
+          <label for="firstBreakMinutes">Minutes: </label>
+          <input type="number" id="firstBreakMinutes" name="firstBreakMinutes">
+          <label for="firstBreakSeconds">Seconds: </label>
+          <input type="number" id="firstBreakSeconds" name="firstBreakSeconds">
+          <br>
+          <button type="button" id="addIntervalOne" onclick="addNewTimeInterval()">Add Work/Break Interval</button>
+        </form>
+      <script>
+          function addNewTimeInterval(){
+            var newInt = document.getElementById("second");
+            if(newInt.style.display === "none") {
+                newInt.style.display = "block";
+            }
+            else{
+                newInt.style.display = "none";
+            }
+            document.getElementById("addIntervalOne").style.display = "none";
+          }
+      </script>
+      <form id="second" class="studyMethodForm ui segment" style="display: none">
+        <h4>Second Work Interval: </h4>
+        <label for="secondWorkMinutes">Minutes: </label>
+        <input type="number" id="secondWorkMinutes" name="secondWorkMinutes">
+        <label for="secondWorkSeconds">Seconds: </label>
+        <input type="number" id="secondWorkSeconds" name="secondWorkSeconds">
+        <br>
+        <h4>Second Break Interval:</h4>
+        <label for="secondBreakMinutes">Minutes: </label>
+        <input type="number" id="secondBreakMinutes" name="secondBreakMinutes">
+        <label for="secondBreakSeconds">Seconds: </label>
+        <input type="number" id="secondBreakSeconds" name="secondBreakSeconds">
+        <br>
+        <button type="button" id="addIntervalTwo" onclick="addNewTimeIntervalTwo()">Add Work/Break Interval</button>
+    </form>
+    <script>
+        function addNewTimeIntervalTwo(){
+          var newInt = document.getElementById("third");
+          if(newInt.style.display === "none") {
+              newInt.style.display = "block";
+          }
+          else{
+              newInt.style.display = "none";
+          }
+          document.getElementById("addIntervalTwo").style.display = "none";
+        }
+    </script>
+    <form id="third" class="studyMethodForm ui segment" style="display: none">
+        <h4>Third Work Interval: </h4>
+        <label for="thirdWorkMinutes">Minutes: </label>
+        <input type="number" id="thirdWorkMinutes" name="thirdWorkMinutes">
+        <label for="thirdWorkSeconds">Seconds: </label>
+        <input type="number" id="thirdWorkSeconds" name="thirdWorkSeconds">
+        <br>
+        <h4>Third Break Interval:</h4>
+        <label for="thirdBreakMinutes">Minutes: </label>
+        <input type="number" id="thirdBreakMinutes" name="thirdBreakMinutes">
+        <label for="thirdBreakSeconds">Seconds: </label>
+        <input type="number" id="thirdBreakSeconds" name="thirdBreakSeconds">
+        <!-- <br>
+        <button type="button" id="addIntervalThree" onclick="addNewTimeIntervalThree()">Add Work/Break Interval</button> -->
+    </form>
+
+</div>
 {% endblock %}

@@ -11,7 +11,7 @@ nav img{
     display:inline-block;
     padding:0;
 }
-nav ul{
+.navbar{
     list-style-type: none;
     margin:0;
     padding: 0;
@@ -19,20 +19,22 @@ nav ul{
     background-color: lightblue;
     display: inline-block;
 }
-nav ul li{
+ .navbar li{
     display: inline-block;
-    
 }
-nav ul li a {
+    
+
+ .navbar li a {
     display: block;
     color: black;
 
     text-align: center;
     padding: 20px 20px ;
 }
-nav ul li a:hover {
+.navbar li a:hover{
     background-color: darkblue;
 }
+
 .studyMethods {
     text-align: center;
 }
