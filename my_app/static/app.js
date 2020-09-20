@@ -62,7 +62,7 @@ function countdown(minute, second) {
 
         interv = setInterval(timeIt,1000)
         function timeIt() {
-            if (document.getElementById("time").innerHTML !== "0:00") {
+            if (document.getElementById("time").innerHTML !== "0:00" && document.getElementById("time").innerHTML !== "End") {
                 if (sec > 0) {
                     sec--;
                 } else {
