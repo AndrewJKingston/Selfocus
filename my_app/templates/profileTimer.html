@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+	<h1>{% block title %}Profile Timer{% endblock %}</h1>
+{% endblock %}
+
+{% block body %}
+  <h1 id="title">Timer</h1>
+  <img src="https://icons-for-free.com/download-icon-clock+minute+time+timer+watch+icon-1320086045717163975_512.png">
+  
+
+  <h5 class="info">Click to start the timer!</h5>
+  <p class="info" id="info-msg">You will get notified after the time ends!</p>
+
+  <button class="ui button" onclick="countdown(document.getElementById('minutes').value,document.getElementById('seconds').value)">Start</button>
+  <button class="ui button" onclick="reset()">Reset</button>
+  <p id="time">____</p>
+{% endblock %}
