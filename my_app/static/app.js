@@ -1,15 +1,15 @@
 let sound;
 
-function preload() {
-  sound = loadSound('timeup.mp3');
-}
+// function preload() {
+//   sound = loadSound('timeup.mp3');
+// }
 
-function setup() {
-    sound = loadSound('timeup.mp3');
-    preload();
-    sound.play();
-    noCanvas();
-}
+// function setup() {
+//     sound = loadSound('timeup.mp3');
+//     preload();
+//     sound.play();
+//     noCanvas();
+// }
 
 function notifyMe() {
     if (!Notification) {

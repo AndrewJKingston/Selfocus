@@ -34,8 +34,9 @@ nav img{
 
 #title {
     background-color: lightblue;
-    display: inline-block;
+    display: block;
 }
+
  .navbar li{
     display: inline-block;
 }
@@ -43,12 +44,11 @@ nav img{
  .navbar li a {
     display: block;
     color: black;
-
     text-align: center;
     padding: 20px 20px ;
 }
 .navbar li a:hover{
-    background-color: darkblue;
+    background-color: teal;
 }
 
 .studyMethods {
@@ -57,10 +57,6 @@ nav img{
 
 .studyMethods > ul {
     display: inline-block;
-}
-
-#title {
-    background-color: lightblue;
 }
 
 .facts {
