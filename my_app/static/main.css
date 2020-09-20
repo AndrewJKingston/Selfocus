@@ -7,22 +7,38 @@ nav {
     padding: 0;
     background-color: lightblue;
 }
+
 nav img{
     display:inline-block;
     padding:0;
 }
+
 .navbar{
     list-style-type: none;
     margin:0;
     padding: 0;
     overflow: hidden;
+}
+
+#intro {
+    max-width: 400px;
+    text-align: center;
+    display: inline-block;
+}
+
+#intro p {
+    text-align: center;
+    font-size: 15px;
+    margin: auto;
+}
+
+#title {
     background-color: lightblue;
     display: inline-block;
 }
  .navbar li{
     display: inline-block;
 }
-    
 
  .navbar li a {
     display: block;
