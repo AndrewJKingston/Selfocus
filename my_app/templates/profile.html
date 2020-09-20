@@ -9,7 +9,12 @@
   <h3 id="profileHeader">Choose a study timer that fits your style!</h3>
   <div class="studyMethods ui segment">
     {% for key, value in profiles.items() %}
-      <h4 class="method-name">{{key}}</h4>
+      <!-- loop.index gives the value of the index currently iterating -->
+      {% set i = loop.index - 1 %}      
+      
+      <br>
+      <a class ="method-name" href="profile/{{i}}"> {{key}} </a>
+      <br>
       {% for block in value %}  
         <ul>
             <!-- Display minutes and seconds of work time -->
@@ -45,15 +50,15 @@
       <br>
       <h4>First Work Interval: </h4>
       <label for="firstWorkMinutes">Minutes: </label>
-      <input type="number" id="firstWorkMinutes" name="firstWorkMinutes">
+      <input type="number" id="firstWorkMinutes" name="firstWorkMinutes" min="0" max="60">
       <label for="firstWorkSeconds">Seconds: </label>
-      <input type="number" id="firstWorkSeconds" name="firstWorkSeconds">
+      <input type="number" id="firstWorkSeconds" name="firstWorkSeconds" min="0" max="60">
       <br>
       <h4>First Break Interval:</h4>
       <label for="firstBreakMinutes">Minutes: </label>
-      <input type="number" id="firstBreakMinutes" name="firstBreakMinutes">
+      <input type="number" id="firstBreakMinutes" name="firstBreakMinutes" min="0" max="60">
       <label for="firstBreakSeconds">Seconds: </label>
-      <input type="number" id="firstBreakSeconds" name="firstBreakSeconds">
+      <input type="number" id="firstBreakSeconds" name="firstBreakSeconds" min="0" max="60">
       <br><br>
       <button type="button" id="addIntervalOne" onclick="addNewTimeInterval()">Add Work/Break Interval</button>
       <button type="submit" id="submitOne" class="post-submit">Submit</button>
@@ -92,15 +97,15 @@
     <form id="second" class="studyMethodForm ui segment" style="display: none">
       <h4>Second Work Interval: </h4>
       <label for="secondWorkMinutes">Minutes: </label>
-      <input type="number" id="secondWorkMinutes" name="secondWorkMinutes">
+      <input type="number" id="secondWorkMinutes" name="secondWorkMinutes" min="0" max="60">
       <label for="secondWorkSeconds">Seconds: </label>
-      <input type="number" id="secondWorkSeconds" name="secondWorkSeconds">
+      <input type="number" id="secondWorkSeconds" name="secondWorkSeconds" min="0" max="60">
       <br>
       <h4>Second Break Interval:</h4>
       <label for="secondBreakMinutes">Minutes: </label>
-      <input type="number" id="secondBreakMinutes" name="secondBreakMinutes">
+      <input type="number" id="secondBreakMinutes" name="secondBreakMinutes" min="0" max="60">
       <label for="secondBreakSeconds">Seconds: </label>
-      <input type="number" id="secondBreakSeconds" name="secondBreakSeconds">
+      <input type="number" id="secondBreakSeconds" name="secondBreakSeconds" min="0" max="60">
       <br><br>
       <button type="button" id="addIntervalTwo" onclick="addNewTimeIntervalTwo()">Add Work/Break Interval</button>
       <button type="button" id="removeIntervalTwo" onclick="removeTimeIntervalTwo()">Remove Work/Break Interval</button>
@@ -143,15 +148,15 @@
     <form id="third" class="studyMethodForm ui segment" style="display: none">
       <h4>Third Work Interval: </h4>
       <label for="thirdWorkMinutes">Minutes: </label>
-      <input type="number" id="thirdWorkMinutes" name="thirdWorkMinutes">
+      <input type="number" id="thirdWorkMinutes" name="thirdWorkMinutes" min="0" max="60">
       <label for="thirdWorkSeconds">Seconds: </label>
-      <input type="number" id="thirdWorkSeconds" name="thirdWorkSeconds">
+      <input type="number" id="thirdWorkSeconds" name="thirdWorkSeconds" min="0" max="60">
       <br>
       <h4>Third Break Interval:</h4>
       <label for="thirdBreakMinutes">Minutes: </label>
-      <input type="number" id="thirdBreakMinutes" name="thirdBreakMinutes">
+      <input type="number" id="thirdBreakMinutes" name="thirdBreakMinutes" min="0" max="60">
       <label for="thirdBreakSeconds">Seconds: </label>
-      <input type="number" id="thirdBreakSeconds" name="thirdBreakSeconds">
+      <input type="number" id="thirdBreakSeconds" name="thirdBreakSeconds" min="0" max="60">
       <br><br>
       <!-- <button type="button" id="addIntervalThree" onclick="addNewTimeIntervalThree()">Add Work/Break Interval</button> -->
       <button type="button" id="removeIntervalThree" onclick="removeTimeIntervalThree()">Remove Work/Break Interval</button>
