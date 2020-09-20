@@ -3,24 +3,35 @@ from flask import render_template, request, redirect
 import requests
 
 post_profile = {
-    "Pomodoro": {
-        "Work": {"min": 25, "sec": 0, "msg": "Time to Work!"},
-        "Break": {"min": 5, "sec": 0, "msg": "Rest Period"}
-    },
-    "20-20-20": {
-        "Work": {"min": 20, "sec": 0, "msg": "Time to Work!"},
-        "Break": {"min": 0, "sec": 20, "msg": "Rest Period; Focus your eyes on something at least 20 feet away!"}
-    }
+    "Pomodoro": [
+        {"min": 25, "sec": 0, "msg": "Work", "submsg": "Time to work!", "type":"work", "default":True},
+        {"min": 5, "sec": 0, "msg": "Rest Period", "submsg": "Time to rest!", "type":"break", "default":True}
+    ],
+    "20-20-20": [
+        {"min": 20, "sec": 0, "msg":"Work", "submsg": "Time to work!", "type":"work", "default":True},
+        {"min": 0, "sec": 20, "msg": "Rest Period", "submsg": "Rest Period; Focus your eyes on something at least 20 feet away!", "type":"break", "default":True}
+    ]
 }
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/profile")
+@app.route("/profile", methods=["GET","POST"])
 def profile():
-    if request.method == "POST":
+    if request.method == "GET":
+        return render_template("profile.html", profiles=post_profile)
+    elif request.method == "POST":
         post_info = request.get_json()
+        """Name will be something like "Pomodoro", and method will be something like [
+         {"min": 25, "sec": 0, "msg": "Work", "submsg": "Time to work!", "type":"work"},
+         {"min": 5, "sec": 0, "msg": "Rest Period", "submsg": "Time to rest!", "type":"break"}] """
+
+        if post_info['name'] in post_profile.keys():
+            # Exception; tryig to post a custom study habit that is already in the list
+            return redirect("/profile/overlap-error")
+        post_profile[post_info['name']] = post_info["method"]
+        return render_template("profile.html", profiles=post_profile)
         # TODO
     return render_template("profile.html") # TODO
     
