@@ -8,39 +8,32 @@
   <h1 id="title">Profile Selector</h1>
   <h3 id="profileHeader">Choose a study timer that fits your style!</h3>
   <div class="studyMethods ui segment">
-    {% for profile in post_profile %}
-      <h4 id="{{post_profile.profile}}">{{profile[]}}</h4>
-      <ul>
-          <!-- Display minutes and seconds of work time -->
-          {% if profile["type"] is "Work" %}
-            {% if profile["min"] is not 0 and profile["sec"] is not 0 %}
-            <li>{{profile["min"]}} minutes and {{profile["sec"]}} seconds of work</li>
-            {% elif profile["min"] is not 0 and profile["sec"] is 0 %}
-            <li>{{profile["min"]}} minutes of work</li>
-            {% else %}
-            <li>{{profile["sec"]}} seconds of work</li>
+    {% for key, value in profiles.items() %}
+      <h4 class="method-name">{{key}}</h4>
+      {% for block in value %}  
+        <ul>
+            <!-- Display minutes and seconds of work time -->
+            {% if block["type"] == "work" %}
+              {% if block["min"] != 0 and block["sec"] != 0 %}
+                <li class="description">{{block["min"]}} minutes and {{block["sec"]}} seconds of work</li>
+              {% elif block["min"] != 0 and block["sec"] == 0 %}
+                <li class="description">{{block["min"]}} minutes of work</li>
+              {% else %}
+                <li class="description">{{block["sec"]}} seconds of work</li>
+              {% endif %}
 
-          <!-- Display minutes and seconds of rest time -->
-          {% elif profile["type"] is "Rest Period" %}
-            {% if profile["min"] is not 0 and profile["sec"] is not 0 %}
-            <li>{{profile["min"]}} minutes and {{profile["sec"]}} seconds of rest</li>
-            {% elif profile["min"] is not 0 and profile["sec"] is 0 %}
-            <li>{{profile["min"]}} minutes of rest</li>
-            {% else %}
-            <li>{{profile["sec"]}} seconds of rest</li>
-          {% endif %}
-          <li>{{profile["sec"]</li>
-      </ul>
+            <!-- Display minutes and seconds of rest time -->
+            {% elif block["type"] == "break" %}
+              {% if block["min"] != 0 and block["sec"] != 0 %}
+                <li class="description">{{block["min"]}} minutes and {{block["sec"]}} seconds of rest</li>
+              {% elif block["min"] != 0 and block["sec"] == 0 %}
+                <li class="description">{{block["min"]}} minutes of rest</li>
+              {% else %}
+                <li class="description">{{block["sec"]}} seconds of rest</li>
+              {% endif %}
+            {% endif %}
+        </ul>
+      {% endfor %}
     {% endfor %}
-    <h4 id="pomodoro">The Pomodoro Method</h4>
-    <ul>
-      <li>25 Minutes of Work</li>
-      <li>5 Minute Break</li>
-    </ul>
-    <h4 id="30_10">Custom Method</h4>
-    <ul>
-      <li>30 Minutes of Work</li>
-      <li>10 Minute Break</li>
-    </ul>
   </div>
 {% endblock %}
