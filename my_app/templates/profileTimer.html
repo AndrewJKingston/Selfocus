@@ -9,10 +9,12 @@
   <img src="https://icons-for-free.com/download-icon-clock+minute+time+timer+watch+icon-1320086045717163975_512.png">
   
 
-  <h5 class="info">Click to start the timer!</h5>
+  <h5 class="info">Study Method {{name}}: Click to start the timer!</h5>
   <p class="info" id="info-msg">You will get notified after the time ends!</p>
 
-  <button class="ui button" onclick="countdown(document.getElementById('minutes').value,document.getElementById('seconds').value)">Start</button>
-  <button class="ui button" onclick="reset()">Reset</button>
-  <p id="time">____</p>
+  <button class="ui button" onclick="countdown_multiple({{tasks}})">Start</button>
+  <button class="ui button" onclick="reset_multiple()">Reset</button>
+
+  <h3 id="type"></h3>
+  <h3 id="time">____</h3>
 {% endblock %}

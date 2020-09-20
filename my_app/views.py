@@ -5,12 +5,12 @@ import sys
 
 post_profile = {
     "Pomodoro": [
-        {"min": 25, "sec": 0, "type":"work", "default":True},
-        {"min": 5, "sec": 0, "type":"break", "default":True}
+        {"min": 25, "sec": 0, "type":"work"},
+        {"min": 5, "sec": 0, "type":"break"}
     ],
     "20-20-20": [
-        {"min": 20, "sec": 0, "type":"work", "default":True},
-        {"min": 0, "sec": 20, "type":"break", "default":True}
+        {"min": 20, "sec": 0, "type":"work"},
+        {"min": 0, "sec": 20, "type":"break"}
     ]
 }
 
@@ -46,9 +46,9 @@ def profile():
                 continue
             # TODO: Cover the Exceptions of min or sec being None. For now, just assume that all inputs get in correctly
             if works_list[i]['min'] != None and works_list[i]['sec'] != None:
-                method.append({"min": works_list[i]['min'], "sec": works_list[i]['sec'], "type":"work", "default":False})
+                method.append({"min": works_list[i]['min'], "sec": works_list[i]['sec'], "type":"work"})
             if breaks_list[i]['min'] != None and breaks_list[i]['sec'] != None:
-                method.append({"min": breaks_list[i]['min'], "sec": breaks_list[i]['sec'], "type":"break", "default":False})
+                method.append({"min": breaks_list[i]['min'], "sec": breaks_list[i]['sec'], "type":"break"})
 
         post_profile[post_info['name']] = method
         
@@ -63,7 +63,7 @@ def profile():
 def profile_id(id):
     key, value = list(post_profile.items())[id]
     # return render_template("profile_id.html", name=key, tasks=value)
-    return render_template("profile_id.html", name=key, tasks=value)
+    return render_template("profileTimer.html", name=key, tasks=value)
     
 @app.route("/name/<string:name>")
 def name(name):

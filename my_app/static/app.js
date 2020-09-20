@@ -1,5 +1,7 @@
 let sound;
 
+let curInterval;
+
 // function preload() {
 //   sound = loadSound('timeup.mp3');
 // }
@@ -82,20 +84,30 @@ function countdown(minute, second) {
     }
 }
 
+function reset() {
+    document.getElementById("time").innerHTML = "End";
+    document.getElementById("info-msg").innerHTML = "You will get notified after the time ends!";
+    document.getElementById("info-msg").style = "color:black;";
+}
+
 function countdown_multiple(key) {
-    console.log("app.js");
+    console.log(key);
     if (document.getElementById("time").innerHTML === "End" || document.getElementById("time").innerHTML === "____") {
         document.getElementById("info-msg").innerHTML = "You will get notified after the time ends!";
         document.getElementById("info-msg").style = "color:black;";
         
-        for (var i=0; i<key.length; i++) {
+        function oneTimer(i) {
+            var type = key[i]['type'];
             var min = key[i]['min'];
-            var sec = sec[i]['sec'];
+            var sec = key[i]['sec'];
             document.getElementById("time").innerHTML = timeFormat(min,sec);
 
+            document.getElementById("type").innerHTML = type.slice(0, 1).toUpperCase() + type.slice(1, type.length) + "!";
+
             interv = setInterval(timeIt,1000)
+            curInterval = interv;
             function timeIt() {
-                if (document.getElementById("time").innerHTML !== "0:00") {
+                if (!(min == 0 && sec == 0)) {
                     if (sec > 0) {
                         sec--;
                     } else {
@@ -103,17 +115,23 @@ function countdown_multiple(key) {
                         sec = 59;
                     }
 
-                    if (min == 0 && sec == 0 && i == key.length-1) {
-                        document.getElementById("time").innerHTML = "End";    
-                    }
                     document.getElementById("time").innerHTML = timeFormat(min,sec);
                 }
                 else {
                     notifyMe();
                     clearInterval(interv)
+                    if (i+1 >= key.length) {
+                        alert("Study Session has ended. Good work!");
+                        document.getElementById("time").innerHTML = "End";
+                        return;
+                    } else {
+                        alert("New Task Incoming!");
+                    }
+                    oneTimer(i+1);
                 }
             }
         }
+        oneTimer(0);
     } 
     else {
         alert("You cannot start a new timer until this one ends!");
@@ -122,8 +140,9 @@ function countdown_multiple(key) {
     }
 }
 
-function reset() {
-    document.getElementById("time").innerHTML = "0:00";
+function reset_multiple() {
+    clearInterval(curInterval)
+    document.getElementById("time").innerHTML = "End";
     document.getElementById("info-msg").innerHTML = "You will get notified after the time ends!";
     document.getElementById("info-msg").style = "color:black;";
 }
