@@ -145,8 +145,5 @@ $(document).ready(function () {
                 console.log("request complete!");
             }
         });
-
     });
-
-    
 });
