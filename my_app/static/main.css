@@ -4,9 +4,35 @@ body {
 
 nav {
     text-align: left;
-    padding: 10px 20px 10px 20px;
+    padding: 0;
+    background-color: lightblue;
 }
+nav img{
+    display:inline-block;
+    padding:0;
+}
+nav ul{
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+    overflow: hidden;
+    background-color: lightblue;
+    display: inline-block;
+}
+nav ul li{
+    display: inline-block;
+    
+}
+nav ul li a {
+    display: block;
+    color: black;
 
+    text-align: center;
+    padding: 20px 20px ;
+}
+nav ul li a:hover {
+    background-color: darkblue;
+}
 .studyMethods {
     text-align: center;
 }
