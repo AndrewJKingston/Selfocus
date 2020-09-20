@@ -87,3 +87,66 @@ function reset() {
     document.getElementById("info-msg").innerHTML = "You will get notified after the time ends!";
     document.getElementById("info-msg").style = "color:black;";
 }
+
+
+// JQUERY 
+$(document).ready(function () {
+    $(".post-submit").click(function(event) {
+        // event.preventDefault();
+        console.log("New profile");
+        const url = "http://localhost:5000/profile";
+        const postInfo = {
+            name: $("#newMethodName").val(),
+            work1: {
+                min: $("#firstWorkMinutes").val(),
+                sec: $("#firstWorkSeconds").val(),
+                type: "work",
+                visible: true
+            },
+            break1: {
+                min: $("#firstBreakMinutes").val(),
+                sec: $("#firstBreakSeconds").val(),
+                type: "break",
+                visible: true
+            },
+            work2: {
+                min: $("#secondWorkMinutes").val(),
+                sec: $("#secondWorkSeconds").val(),
+                type: "work",
+                visible: $("#second").css('display') !== "none"
+            },
+            break2: {
+                min: $("#secondBreakMinutes").val(),
+                sec: $("#secondBreakSeconds").val(),
+                type: "break",
+                visible: $("#second").css('display') !== "none"
+            },
+            work3: {
+                min: $("#thirdWorkMinutes").val(),
+                sec: $("#thirdWorkSeconds").val(),
+                type: "work",
+                visible: $("#third").css('display') !== "none"
+            },
+            break3: {
+                min: $("#thirdBreakMinutes").val(),
+                sec: $("#thirdBreakSeconds").val(),
+                type: "break",
+                visible: $("third").css('display') !== "none"
+            }
+        };
+        console.log(postInfo.name)
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: JSON.stringify(postInfo),
+            processData: false,
+            contentType: "application/json; charset=UTF-8",
+            complete: function() {
+                console.log("request complete!");
+            }
+        });
+
+    });
+
+    
+});

@@ -8,39 +8,154 @@
   <h1 id="title">Profile Selector</h1>
   <h3 id="profileHeader">Choose a study timer that fits your style!</h3>
   <div class="studyMethods ui segment">
-    {% for profile in post_profile %}
-      <h4 id="{{post_profile.profile}}">{{profile[]}}</h4>
-      <ul>
-          <!-- Display minutes and seconds of work time -->
-          {% if profile["type"] is "Work" %}
-            {% if profile["min"] is not 0 and profile["sec"] is not 0 %}
-            <li>{{profile["min"]}} minutes and {{profile["sec"]}} seconds of work</li>
-            {% elif profile["min"] is not 0 and profile["sec"] is 0 %}
-            <li>{{profile["min"]}} minutes of work</li>
-            {% else %}
-            <li>{{profile["sec"]}} seconds of work</li>
+    {% for key, value in profiles.items() %}
+      <h4 class="method-name">{{key}}</h4>
+      {% for block in value %}  
+        <ul>
+            <!-- Display minutes and seconds of work time -->
+            {% if block["type"] == "work" %}
+              {% if block["min"] != 0 and block["sec"] != 0 %}
+                <li class="description">{{block["min"]}} minutes and {{block["sec"]}} seconds of work</li>
+              {% elif block["min"] != 0 and block["sec"] == 0 %}
+                <li class="description">{{block["min"]}} minutes of work</li>
+              {% else %}
+                <li class="description">{{block["sec"]}} seconds of work</li>
+              {% endif %}
 
-          <!-- Display minutes and seconds of rest time -->
-          {% elif profile["type"] is "Rest Period" %}
-            {% if profile["min"] is not 0 and profile["sec"] is not 0 %}
-            <li>{{profile["min"]}} minutes and {{profile["sec"]}} seconds of rest</li>
-            {% elif profile["min"] is not 0 and profile["sec"] is 0 %}
-            <li>{{profile["min"]}} minutes of rest</li>
-            {% else %}
-            <li>{{profile["sec"]}} seconds of rest</li>
-          {% endif %}
-          <li>{{profile["sec"]</li>
-      </ul>
+            <!-- Display minutes and seconds of rest time -->
+            {% elif block["type"] == "break" %}
+              {% if block["min"] != 0 and block["sec"] != 0 %}
+                <li class="description">{{block["min"]}} minutes and {{block["sec"]}} seconds of rest</li>
+              {% elif block["min"] != 0 and block["sec"] == 0 %}
+                <li class="description">{{block["min"]}} minutes of rest</li>
+              {% else %}
+                <li class="description">{{block["sec"]}} seconds of rest</li>
+              {% endif %}
+            {% endif %}
+        </ul>
+      {% endfor %}
     {% endfor %}
-    <h4 id="pomodoro">The Pomodoro Method</h4>
-    <ul>
-      <li>25 Minutes of Work</li>
-      <li>5 Minute Break</li>
-    </ul>
-    <h4 id="30_10">Custom Method</h4>
-    <ul>
-      <li>30 Minutes of Work</li>
-      <li>10 Minute Break</li>
-    </ul>
+  </div>
+
+  <h3 id="newProfileHeader">Or create your own study profile!</h3>
+  <div class="newStudyMethod ui segment" style="display: inline-block">
+    <form id="first" class="studyMethodForm ui segment">
+      <label for="newMethodName">Name of new profile: </label>
+      <input type="text" id="newMethodName" name="newMethodName">
+      <br>
+      <h4>First Work Interval: </h4>
+      <label for="firstWorkMinutes">Minutes: </label>
+      <input type="number" id="firstWorkMinutes" name="firstWorkMinutes">
+      <label for="firstWorkSeconds">Seconds: </label>
+      <input type="number" id="firstWorkSeconds" name="firstWorkSeconds">
+      <br>
+      <h4>First Break Interval:</h4>
+      <label for="firstBreakMinutes">Minutes: </label>
+      <input type="number" id="firstBreakMinutes" name="firstBreakMinutes">
+      <label for="firstBreakSeconds">Seconds: </label>
+      <input type="number" id="firstBreakSeconds" name="firstBreakSeconds">
+      <br><br>
+      <button type="button" id="addIntervalOne" onclick="addNewTimeInterval()">Add Work/Break Interval</button>
+      <button type="submit" id="submitOne" class="post-submit">Submit</button>
+    </form>
+    <script></script>
+    <script>
+        function addNewTimeInterval(){
+        var newInt = document.getElementById("second");
+        if(newInt.style.display === "none") {
+            newInt.style.display = "inline-block";
+            document.getElementById("submitOne").style.display = "none";
+            document.getElementById("submitTwo").style.display = "inline-block";
+        }
+        else {
+            newInt.style.display = "none";
+            document.getElementById("submitOne").style.display = "inline-block";
+            document.getElementById("submitTwo").style.display = "none";
+        }
+        document.getElementById("addIntervalOne").style.display = "none";
+        }
+        function removeTimeIntervalTwo() {
+            var newInt = document.getElementById("second");
+            if(newInt.style.display === "inline-block") {
+                newInt.style.display = "none";
+                document.getElementById("submitTwo").style.display = "none";
+                document.getElementById("submitOne").style.display = "inline-block";
+                document.getElementById("addIntervalOne").style.display = "inline-block";
+            }
+            else {
+                newInt.style.display = "inline-block";
+                document.getElementById("submitTwo").style.display = "inline-block";
+                document.getElementById("submitOne").style.display = "none";
+            }
+        }
+    </script>
+    <form id="second" class="studyMethodForm ui segment" style="display: none">
+      <h4>Second Work Interval: </h4>
+      <label for="secondWorkMinutes">Minutes: </label>
+      <input type="number" id="secondWorkMinutes" name="secondWorkMinutes">
+      <label for="secondWorkSeconds">Seconds: </label>
+      <input type="number" id="secondWorkSeconds" name="secondWorkSeconds">
+      <br>
+      <h4>Second Break Interval:</h4>
+      <label for="secondBreakMinutes">Minutes: </label>
+      <input type="number" id="secondBreakMinutes" name="secondBreakMinutes">
+      <label for="secondBreakSeconds">Seconds: </label>
+      <input type="number" id="secondBreakSeconds" name="secondBreakSeconds">
+      <br><br>
+      <button type="button" id="addIntervalTwo" onclick="addNewTimeIntervalTwo()">Add Work/Break Interval</button>
+      <button type="button" id="removeIntervalTwo" onclick="removeTimeIntervalTwo()">Remove Work/Break Interval</button>
+      <button type="submit" id="submitTwo" class="post-submit">Submit</button>
+    </form>
+    <script>
+        function addNewTimeIntervalTwo() {
+          var newInt = document.getElementById("third");
+          if(newInt.style.display === "none") {
+              newInt.style.display = "inline-block";
+              document.getElementById("submitTwo").style.display = "none";
+              document.getElementById("removeIntervalTwo").style.display = "none";
+              document.getElementById("submitThree").style.display = "inline-block";
+          }
+          else {
+              newInt.style.display = "none";
+              document.getElementById("submitTwo").style.display = "inline-block";
+              document.getElementById("removeIntervalTwo").style.display = "inline-block";
+              document.getElementById("submitThree").style.display = "none";
+          }
+          document.getElementById("addIntervalTwo").style.display = "none";
+        }
+        function removeTimeIntervalThree() {
+            var newInt = document.getElementById("third");
+            if(newInt.style.display === "inline-block") {
+                newInt.style.display = "none";
+                document.getElementById("submitThree").style.display = "none";
+                document.getElementById("submitTwo").style.display = "inline-block";
+                document.getElementById("addIntervalTwo").style.display = "inline-block";
+                document.getElementById("removeIntervalTwo").style.display = "block";
+            }
+            else {
+                newInt.style.display = "inline-block";
+                document.getElementById("submitThree").style.display = "inline-block";
+                document.getElementById("submitTwo").style.display = "none";
+                document.getElementById("removeIntervalTwo").style.display = "none";
+            }
+        }
+    </script>
+    <form id="third" class="studyMethodForm ui segment" style="display: none">
+      <h4>Third Work Interval: </h4>
+      <label for="thirdWorkMinutes">Minutes: </label>
+      <input type="number" id="thirdWorkMinutes" name="thirdWorkMinutes">
+      <label for="thirdWorkSeconds">Seconds: </label>
+      <input type="number" id="thirdWorkSeconds" name="thirdWorkSeconds">
+      <br>
+      <h4>Third Break Interval:</h4>
+      <label for="thirdBreakMinutes">Minutes: </label>
+      <input type="number" id="thirdBreakMinutes" name="thirdBreakMinutes">
+      <label for="thirdBreakSeconds">Seconds: </label>
+      <input type="number" id="thirdBreakSeconds" name="thirdBreakSeconds">
+      <br><br>
+      <!-- <button type="button" id="addIntervalThree" onclick="addNewTimeIntervalThree()">Add Work/Break Interval</button> -->
+      <button type="button" id="removeIntervalThree" onclick="removeTimeIntervalThree()">Remove Work/Break Interval</button>
+      <button type="submit" id="submitThree" class="post-submit">Submit</button>
+    </form>
   </div>
 {% endblock %}
