@@ -82,6 +82,46 @@ function countdown(minute, second) {
     }
 }
 
+function countdown_multiple(key) {
+    console.log("app.js");
+    if (document.getElementById("time").innerHTML === "End" || document.getElementById("time").innerHTML === "____") {
+        document.getElementById("info-msg").innerHTML = "You will get notified after the time ends!";
+        document.getElementById("info-msg").style = "color:black;";
+        
+        for (var i=0; i<key.length; i++) {
+            var min = key[i]['min'];
+            var sec = sec[i]['sec'];
+            document.getElementById("time").innerHTML = timeFormat(min,sec);
+
+            interv = setInterval(timeIt,1000)
+            function timeIt() {
+                if (document.getElementById("time").innerHTML !== "0:00") {
+                    if (sec > 0) {
+                        sec--;
+                    } else {
+                        min--;
+                        sec = 59;
+                    }
+
+                    if (min == 0 && sec == 0 && i == key.length-1) {
+                        document.getElementById("time").innerHTML = "End";    
+                    }
+                    document.getElementById("time").innerHTML = timeFormat(min,sec);
+                }
+                else {
+                    notifyMe();
+                    clearInterval(interv)
+                }
+            }
+        }
+    } 
+    else {
+        alert("You cannot start a new timer until this one ends!");
+        document.getElementById("info-msg").innerHTML = "You cannot start a new timer until this one ends!";
+        document.getElementById("info-msg").style = "color:red;";
+    }
+}
+
 function reset() {
     document.getElementById("time").innerHTML = "0:00";
     document.getElementById("info-msg").innerHTML = "You will get notified after the time ends!";

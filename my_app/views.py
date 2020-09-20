@@ -32,6 +32,10 @@ def profile():
             # Exception; tryig to post a custom study habit that is already in the list: TODO
             print("Already Existing Studying Method")
             return render_template("profile.html", profiles=post_profile)
+        elif post_info['name'] == "" or post_info['name'].isspace():
+            # Exception; tryig to post a custom study habit that is already in the list: TODO
+            print("Blank Name!")
+            return render_template("profile.html", profiles=post_profile)
 
         method = []
         works_list = [post_info['work' + str(x)] for x in range(1,4)]
@@ -54,6 +58,12 @@ def profile():
         return render_template("profile.html", profiles=post_profile)
         # TODO
     return render_template("profile.html") # TODO
+
+@app.route("/profile/<int:id>")
+def profile_id(id):
+    key, value = list(post_profile.items())[id]
+    # return render_template("profile_id.html", name=key, tasks=value)
+    return render_template("profile_id.html", name=key, tasks=value)
     
 @app.route("/name/<string:name>")
 def name(name):
