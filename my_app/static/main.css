@@ -7,13 +7,6 @@ nav {
     padding: 10px 20px 10px 20px;
 }
 
-.studyMethods {
-    text-align: center;
-}
-
-.studyMethods > ul {
-    display: inline-block;
-}
 
 #title {
     background-color: lightblue;
@@ -22,6 +15,14 @@ nav {
 .facts {
     color: red;
     font-size: 2em;
+}
+
+.studyMethods {
+    text-align: center;
+}
+
+.studyMethods > ul {
+    display: inline-block;
 }
 
 #color{
