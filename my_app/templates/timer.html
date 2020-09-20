@@ -22,7 +22,7 @@
   <h5 class="info">Click to start the timer!</h5>
   <p class="info" id="info-msg">You will get notified after the time ends!</p>
 
-  <button onclick="countdown(document.getElementById('minutes').value,document.getElementById('seconds').value)">Start</button>
-  <button onclick="reset()">Reset</button>
+  <div class="ui button" onclick="countdown(document.getElementById('minutes').value,document.getElementById('seconds').value)">Start</div>
+  <div class="ui button" onclick="reset()">Reset</div>
   <p id="time">____</p>
 {% endblock %}
